@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    h1 New Message 
+    form(method="POST" action="/new")
+
+        div
+            label(for="textinput") Message
+            input#textinput(type="text" name="textinput")
+
+        div
+            label(for="nameinput") Name
+            input#nameinput(type="text" name="nameinput")
+
+        button(type="submit") Submit
