@@ -1,13 +1,46 @@
 extends layout
 
 block content
-    h1= title
-    p Welcome to #{title}
-    ul
-    each message in messages
-        li
-            div= message.text
-            div= message.user
-            div= message.added
+
+
+
+    div.brickbox
+        each message in messages
+            div.brick
+                div.user= message.user
+                div.message= message.text
+                div.padder
+                div.added= message.added
+                div.top
+                div.side
+                div.cement
+
+
+        div.linkbrick.brick
+            a(href="/new") 
+            div Add a Messagebrick
+
+            .top 
+            .side
+            
+        div#hidden.brick
+            h1 +
+
+            .top 
+            .side
+
+        div#header.brick
+            h1 Mini Messagebricks
+
+            .top 
+            .side
+
+
+
+        
+
+
+
+
 
 

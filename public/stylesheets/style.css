@@ -1,13 +1,355 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@font-face {
+    font-family: wakuwaku;
+    src: url("../fonts/mini-wakuwaku.otf");
 }
 
-a {
-  color: #00B7FF;
+:root {
+    --brick-mod: 80px;
+    --new-green: rgba(0, 87, 0, 1)
+}
+
+@media only screen and (min-width: 961px) {
+    body .brickbox {
+        width: 90vw;
+    }
+}
+
+body {
+    font-family: wakuwaku, sans-serif;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #7e5b78;
+
+    overflow-x: hidden;
+}
+
+button {
+    font-family: wakuwaku, sans-serif;
+    border: none;
+    cursor: pointer;
 }
 
 li {
     list-style-type: none;
     margin: 15px;
 }
+
+#header {
+    background-color: black;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    margin: 20px;
+}
+
+a {
+    text-decoration: none;
+
+}
+
+a:visited {
+    color: black;
+}
+
+#header>.top {
+    background-color: rgb(49, 49, 49);
+}
+
+#header>.side {
+    background-color: rgb(27, 27, 27);
+}
+
+.linkbrick {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 2rem;
+    transition: all 0.3s;
+}
+
+.linkbrick>a {
+    height: 100%;
+    width: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.linkbrick:hover {
+    filter: brightness(1.5);
+}
+
+#hidden {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 2rem;
+    background-color: rgb(107, 25, 25);
+    color: rgba(255, 255, 255, 0);
+
+    width: 15px;
+    padding: 0;
+    flex-grow: initial;
+    transition: all 0.3s;
+}
+
+#hidden>h1 {
+    margin: 0 20px;
+    
+}
+
+#hidden>.top, #submitbtn>.top {
+    background-color: rgb(80, 20, 20);
+}
+
+#hidden>.side, #submitbtn>.side {
+    background-color: rgb(65, 16, 16);
+}
+
+.linkbrick:hover + #hidden, #hidden:hover {
+    flex-grow: 1;
+    width: 50px;
+    color: rgb(255, 255, 255);
+}
+
+.brickbox {
+    box-sizing: border-box;
+    width: 70vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap-reverse;
+    align-content: flex-start;
+    justify-content: flex-end;
+
+    padding-left: var(--brick-mod);
+    padding-bottom: 5vh;
+}
+
+.brick {
+    box-sizing: border-box;
+    background-color: rgb(255, 127, 80);
+    margin: 5px;
+    height: calc(100% / 8);
+    flex-grow: 1;
+
+    padding: 8px;
+
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+
+    -ms-word-break: break-all;
+    word-break: break-all;
+
+    /* Non standard for WebKit */
+    word-break: break-word;
+
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+
+    transition: all 0.3s;
+}
+
+.brick:last-child {
+    max-width: fit-content;
+}
+
+.brick>.top {
+    content: "";
+    
+    height: 25%;
+    width: calc(100% + var(--brick-mod));
+    background-color: rgb(148, 69, 41);
+
+    position: absolute;
+    top: 0;
+    right: 0;
+
+
+    transform: translate(0%, -95%);
+    clip-path: polygon(0 0, calc(100% - var(--brick-mod)) 0, 100% 100%, var(--brick-mod) 100%);
+
+}
+
+.brick>.side {
+    content: "";
+    
+    height: 125%;
+    width: var(--brick-mod);
+    background-color: rgb(63, 23, 9);
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+
+    transform: translate(-100%, 0%);
+    clip-path: polygon(0 0, 100% 20%, 100% 100%, 0 80%);
+
+}
+
+
+.brick>.user {
+    font-weight: bolder;
+    margin-bottom: 10px;
+    color: var(--new-green);
+}
+
+.brick>.message {
+    font-size: 1.5rem;
+    font-weight: lighter;
+    margin-bottom: 10px;
+}
+
+.brick>.added {
+    font-size: 0.85rem;
+    filter: opacity(0.5);
+
+    justify-self: self-start;
+}
+
+.brick>.padder {
+    flex-grow: 1;
+}
+
+#newheader {
+    background-color: black;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#newheader>.top {
+    background-color: rgb(49, 49, 49);
+}
+
+#newheader>.side {
+    background-color: rgb(27, 27, 27);
+}
+
+#submitbtn {
+    background-color: rgb(107, 25, 25);
+    color: rgb(255, 255, 255);
+
+    transition: all 0.3s;
+    flex-grow: 1;
+    width: 120px;
+
+    -ms-word-break: initial;
+    word-break: initial;
+
+    /* Non standard for WebKit */
+    word-break: initial;
+}
+
+form:invalid #submitbtn {
+    width: 15px;
+    flex-grow: initial;
+    color: rgba(255, 255, 255, 0);
+}
+
+.inputbrick {
+    background-color: mediumaquamarine;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10%;
+
+    transition: all 0.3s;
+}
+
+.inputbrick>.top {
+    background-color: rgb(39, 126, 97);
+}
+
+.inputbrick>.side {
+    background-color: rgb(20, 80, 60);
+}
+
+.inputbrick input, .inputbrick textarea {
+    flex-grow: 1;
+    border: none;
+    background-color: rgb(17, 90, 66);
+    padding: 5px;
+    color: white;
+    font-size: 1rem;
+
+    outline: none;
+    transition: all 0.3s;
+}
+
+.inputbrick input:focus, .inputbrick textarea:focus {
+    background-color: rgb(32, 129, 97);
+}
+
+.inputbrick #nameinput {
+    flex-grow: initial;
+    height: 40%;
+}
+
+.brick:last-child {
+    animation: placebrick 0.5s cubic-bezier(0.18, 0.89, 0.38, 1.07);
+    transition: all 0.3s;
+}
+
+.brick:not(.linkbrick):active {
+    transform: translate(calc(var(--brick-mod) * 0.95), calc(var(--brick-mod) * 0.4));
+}
+
+@keyframes placebrick {
+    from {transform: translateY(-400%);}
+    to {transform: translateY(0%);}
+}
+
+.brick:last-child::after, .brick:last-child::before {
+    content: "";
+    position: absolute;
+    top: 0%;
+    left: 0;
+    z-index: 3;
+
+    transform: translate(0%, -100%);
+    height: 100%;
+    width: 50%;
+
+    background-image: url("../images/hammer.gif");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.brick:last-child::before {
+    filter: brightness(0) opacity(0.5);
+    transform: translate(0%, -110%) skewX(70deg) scaleY(0.15);
+    transform-origin: bottom left;
+    z-index: 2;
+}
+
+form .brick:last-child::after,  form .brick:last-child::before{
+    background-image: url("../images/write.gif");
+}
+
+form:valid .brick:last-child::after, form:valid .brick:last-child::after {
+    background-image: url("../images/send.gif");
+}
+

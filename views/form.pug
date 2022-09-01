@@ -1,15 +1,37 @@
 extends layout
 
 block content
-    h1 New Message 
     form(method="POST" action="/new")
+        .brickbox
 
-        div
-            label(for="textinput") Message
-            input#textinput(type="text" name="textinput")
+            div.brick.inputbrick
+                label(for="textinput") Message
+                textarea#textinput(name="textinput" maxlength="120" required)
 
-        div
-            label(for="nameinput") Name
-            input#nameinput(type="text" name="nameinput")
+                .top 
+                .side
 
-        button(type="submit") Submit
+            div.brick.inputbrick
+                label(for="nameinput") Name
+                input#nameinput(type="text" name="nameinput" maxlength="20" required)
+
+                .top
+                .side
+
+            button(type="submit")#submitbtn.brick.linkbrick Submit
+
+                .top
+                .side
+
+            div.linkbrick.brick
+                a(href="/") 
+                div Back
+
+                .top 
+                .side
+
+            div#newheader.brick
+                h1 New Messagebrick
+
+                .top 
+                .side
